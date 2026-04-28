@@ -347,7 +347,7 @@ const AdminDashboard = () => {
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="price" className="dark:text-gray-300">Price</label>
+                      <label htmlFor="price" className="dark:text-gray-300">Price (Rs.)</label>
                       <input
                         type="number"
                         id="price"
@@ -570,7 +570,7 @@ const AdminDashboard = () => {
                           </span>
                         </td>
                         <td className="p-5 font-bold text-green-600 dark:text-green-400">
-                          ${product.price.toFixed(2)}
+                          Rs. {product.price.toLocaleString()}
                         </td>
                         <td className="p-5">
                           {product.inStock ? (

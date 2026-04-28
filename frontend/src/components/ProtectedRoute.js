@@ -1,34 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Navigate } from 'react-router-dom';
-import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
 
 const ProtectedRoute = ({ children }) => {
-  const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    
-    if (!token) {
-      setLoading(false);
-      return;
-    }
-
-    axios.get('/api/auth/me', {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    .then(response => {
-      setUser(response.data.user);
-      setLoading(false);
-    })
-    .catch(() => {
-      localStorage.removeItem('token');
-      setLoading(false);
-    });
-  }, []);
+  const { user, loading } = useAuth();
 
   if (loading) {
-    return <div className="loading">Loading...</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-green-600 border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-gray-600 dark:text-gray-400 font-bold animate-pulse">Verifying Access...</p>
+        </div>
+      </div>
+    );
   }
 
   if (!user || user.role !== 'admin') {

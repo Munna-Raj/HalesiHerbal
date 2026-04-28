@@ -57,7 +57,7 @@ const ProductDetails = () => {
             <h1 className="product-detail-name text-3xl md:text-4xl font-bold mb-4 dark:text-gray-100">{product.name}</h1>
             
             <div className="product-detail-price text-3xl font-bold text-green-600 mb-6 dark:text-green-400">
-              ${product.price.toFixed(2)}
+              Rs. {product.price.toLocaleString()}
             </div>
             
             <div className="product-detail-category flex flex-wrap gap-3 mb-8">

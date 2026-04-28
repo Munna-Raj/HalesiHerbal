@@ -124,7 +124,7 @@ const Home = () => {
                 </p>
                 <div className="flex items-center justify-between mt-auto pt-4 border-t dark:border-gray-700">
                   <span className="text-2xl font-black text-green-600 dark:text-green-400">
-                    ${product.price.toFixed(2)}
+                    Rs. {product.price.toLocaleString()}
                   </span>
                   <Link to={`/product/${product._id}`} className="btn btn-primary btn-sm rounded-xl px-6 py-3 font-bold hover:scale-105 transition-transform">
                     Details

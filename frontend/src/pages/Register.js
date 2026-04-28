@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
 
 const Register = () => {
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -42,7 +44,7 @@ const Register = () => {
         role
       });
       
-      localStorage.setItem('token', response.data.token);
+      login(response.data.user, response.data.token);
       
       if (response.data.user.role === 'admin') {
         navigate('/admin');
